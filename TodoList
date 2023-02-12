@@ -1,0 +1,47 @@
+package practice;
+import java.util.ArrayList;
+
+public class TodoList {
+    private ArrayList<String> todoList = new ArrayList<>();
+
+    public void add(String todo) {
+        todoList.add(todo);
+        System.out.println("Todo '" + todo + "' added to the end of the list.");
+    }
+
+    public void add(int index, String todo) {
+        if (index > todoList.size()) {
+            todoList.add(todo);
+            System.out.println("Index " + index + " is not valid. Todo '" + todo + "' added to the end of the list.");
+        } else {
+            try {
+                todoList.add(index, todo);
+                System.out.println("Todo '" + todo + "' added at index " + index + ".");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Index " + index + " is not valid. Todo not added.");
+            }
+        }
+    }
+
+    public void edit(int index, String todo) {
+        try {
+            todoList.set(index, todo);
+            System.out.println("Todo at index " + index + " changed to '" + todo + "'.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index " + index + " is not valid. Todo not edited.");
+        }
+    }
+
+    public void delete(int index) {
+        try {
+            String deletedTodo = todoList.remove(index);
+            System.out.println("Todo '" + deletedTodo + "' at index " + index + " deleted.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index " + index + " is not valid. Todo not deleted.");
+        }
+    }
+
+    public ArrayList<String> getTodos() {
+        return todoList;
+    }
+}
